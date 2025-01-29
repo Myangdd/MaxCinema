@@ -1,0 +1,112 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using MaxCinema.Helper;
+@{
+    var count = @HttpContextAccessor.HttpContext.Session.Get<int>("itemCount");
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head class="family-font">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MaxCinema</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MaxCinema.styles.css" asp-append-version="true" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+</head>
+<body class="family-font">
+    <header class="family-font">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MaxCinema</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" class="btn btn-primary"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">About us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Movie" asp-action="Index">Cinema Library</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="DisplayAll">Customer</a>
+                        </li>
+                        @* <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Login">AdminLogin</a>
+                        </li> *@
+                    </ul>
+                    <div class="flex-grow-1"></div>
+                    <div class="navbar-nav d-flex">
+                        <div class="nav-item">
+                            <a asp-controller="Customer" asp-action="CustomerCheckIn" class="btn btn-primary me-2">Customer</a>
+                        </div>
+                        <div class="nav-item">
+                            <a asp-controller="Admin" asp-action="Login" class="btn btn-primary me-2">Admin</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex cart-container">
+                    <a asp-controller="Cart" asp-action="CartDisplay" class="nav-link">
+                        <i class="cart-icon" style="font-size:1.5rem;">&#128722;</i>
+                    </a>
+                    <span class="item-count" id="cartCount">@count</span>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+    <div class="container family-font">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Evangeloa, Scroll to Top Button -->
+    <button id="scrollToTopBtn" onclick="scrollToTop()">
+        &#11161;  <!--Evangelos I used this Unicode Decimal Code Upwards arrow for the button This is the up arrow symbol you can search in w3school same examples -->
+    </button>
+
+    <footer class="border-top footer text-muted family-font">
+        <div class="container">
+            &copy; 2024 - MaxCinema - <a asp-area="" asp-controller="Home" asp-action="Privacy">About us</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js" class="family-font"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js" class="family-font"></script>
+    <script src="~/js/site.js" asp-append-version="true" class="family-font"></script>
+
+
+    <script>
+        //--Evangelos I found an instraction with the library Jquery in Javascript library to make it functional, the code i get it online from resources just i
+        // make small adjustments to can connect to our page Show the button when scrolling down the button will
+        // reveal when will scroll down the user see the code bellow:
+
+        //--Evangelos I found an instraction with the library Jquery in Javascript library to make it functional, the code i get it online from resources just i 
+        // make small adjustments to can connect to our page Show the button when scrolling down the button will 
+        // reveal when will scroll down the user see the code bellow: 
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('#scrollToTopBtn').fadeIn();
+            } else {
+                $('#scrollToTopBtn').fadeOut();
+            }
+        });
+
+        //--Evangelos i create  Function to scroll to the top from open source i found the code and the solution on open source online, isnt my code all
+        //the idea i took it from online source.
+        function scrollToTop() {
+            $('html, body').animate({ scrollTop: 0 }, 500);
+        }
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
