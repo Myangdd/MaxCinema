@@ -15,9 +15,7 @@ Optional image URL for movie posters.
 
 Display all movies using partial views.
 
-Search and filter movies by title, director, or release year.
-
-### Shopping Cart🛒
+### Shopping Cart🛒 AJAX without refresh page
 
 Users can add movies to the cart.
 
@@ -63,7 +61,7 @@ Entity Framework Core (Code First)
 
 SQL Server
 
-Sessions & Cookies for Shopping Cart
+Sessions & Cookies & AJAX for Shopping Cart
 
 LINQ for Data Queries
 
