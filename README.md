@@ -45,6 +45,8 @@ Display the customer who placed the most expensive order or spent the most overa
 
 ### Additional Features (Optional Enhancements)🔎
 
+Simple authentication for amdin 
+
 Pagination for movies list.
 
 Search functionality using query strings.
@@ -84,7 +86,7 @@ cd MovieShop
 
 2️⃣ Configure Database
 
-Open appsettings.json and update the SQL Server connection string.
+Open appsettings.json and update the SQL Server connection string. 
 
 3️⃣ Apply Migrations
 
